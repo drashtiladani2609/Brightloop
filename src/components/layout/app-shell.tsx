@@ -96,7 +96,11 @@ export function AppShell({
                 </p>
               </div>
             </div>
-            <form action="/api/auth/logout" method="post">
+            <form onSubmit={async (e) => {
+    e.preventDefault()
+    await fetch("/api/auth/logout", { method: "POST" })
+    window.location.assign("/login")
+  }}>
               <button
                 type="submit"
                 className="mt-2 flex w-full items-center justify-center gap-1.5 border border-[color:color-mix(in_srgb,var(--rail-text)_25%,transparent)] py-1 font-mono text-[8.5px] uppercase tracking-[0.14em] text-[color:color-mix(in_srgb,var(--rail-text)_70%,transparent)] transition-colors hover:bg-[var(--coral)] hover:text-white"
